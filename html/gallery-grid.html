@@ -1,0 +1,53 @@
+<section id="galeria" class="relative py-16 sm:py-20 md:py-24">
+  <!-- Layer local de estrelas da galeria -->
+  <div id="starsGallery" class="pointer-events-none absolute inset-0 -z-10 opacity-0"></div>
+
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl">Nossos momentos</h2>
+        <p class="text-white/80 mt-1">Um céu de lembranças, com planetas e girassóis.</p>
+      </div>
+      <div class="hidden sm:flex gap-2">
+        <button id="shuffle" class="px-4 py-2 rounded-xl border border-white/20 hover:bg-white/10 transition">Embaralhar</button>
+        <button id="starsToggle" class="px-4 py-2 rounded-xl bg-sunflower-500 text-space-900 font-semibold hover:bg-sunflower-400 transition">
+          Acender céu
+        </button>
+      </div>
+    </div>
+
+    <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- ... seus 3 cards exatamente como estão ... -->
+      <div class="card bg-white/5 border border-white/10 rounded-2xl overflow-hidden group">
+        <div class="aspect-[4/3] bg-gradient-to-br from-planet-blue/60 to-planet-lilac/60 relative"></div>
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Nosso pôr do sol</h3>
+          <p class="text-white/75 mt-1">Onde os girassóis parecem olhar para nós.</p>
+        </div>
+      </div>
+
+      <div class="card bg-white/5 border border-white/10 rounded-2xl overflow-hidden group">
+        <div class="aspect-[4/3] bg-gradient-to-br from-planet-coral/50 to-sunflower-400/60 relative"></div>
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Primeiro passeio</h3>
+          <p class="text-white/75 mt-1">Passinhos que viraram constelações no coração.</p>
+        </div>
+      </div>
+
+      <div class="card bg-white/5 border border-white/10 rounded-2xl overflow-hidden group">
+        <div class="aspect-[4/3] bg-gradient-to-br from-space-700/70 to-space-800/70 relative"></div>
+        <div class="p-5">
+          <h3 class="font-semibold text-lg">Planeta de girassóis</h3>
+          <p class="text-white/75 mt-1">Nosso cantinho favorito no universo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 sm:hidden flex gap-2">
+      <button id="shuffle_m" class="flex-1 px-4 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">Embaralhar</button>
+      <button id="starsToggle_m" class="flex-1 px-4 py-3 rounded-xl bg-sunflower-500 text-space-900 font-semibold hover:bg-sunflower-400 transition">
+        Acender céu
+      </button>
+    </div>
+  </div>
+</section>

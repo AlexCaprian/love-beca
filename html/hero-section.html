@@ -1,0 +1,64 @@
+<section id="capa" class="pt-28 sm:pt-32 relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="w-full h-full" style="background-image: var(--bg);"></div>
+    </div>
+  
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute left-1/2 top-16 -translate-x-1/2 w-[720px] h-[720px] border border-white/10 rounded-full animate-orbit no-select hidden md:block"></div>
+      <div class="absolute left-1/2 top-16 -translate-x-1/2 w-[520px] h-[520px] border border-white/10 rounded-full animate-orbit [animation-duration:24s] no-select hidden md:block"></div>
+      <div class="absolute left-1/2 top-16 -translate-x-1/2 w-[340px] h-[340px] border border-white/10 rounded-full animate-orbit [animation-duration:32s] no-select hidden md:block"></div>
+  
+      <div class="absolute left-[15%] top-[22%] w-16 h-16 bg-planet-blue rounded-full shadow-star animate-float"></div>
+      <div class="absolute right-[12%] top-[30%] w-20 h-20 bg-planet-coral rounded-full shadow-star animate-float [animation-duration:7s]"></div>
+      <div class="absolute left-[8%] bottom-[18%] w-12 h-12 bg-planet-lilac rounded-full shadow-star animate-float [animation-duration:8s]"></div>
+      <div class="absolute right-[20%] bottom-[12%] w-14 h-14 bg-planet-mint rounded-full shadow-star animate-float [animation-duration:5.5s]"></div>
+    </div>
+  
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="text-center md:text-left">
+          <h1 class="font-display text-4xl sm:text-5xl md:text-6xl leading-tight">
+            Beca, meu pequeno universo
+          </h1>
+          <p class="mt-4 text-white/90 text-lg sm:text-xl md:text-2xl font-script">
+            “Tu te tornas eternamente responsável por aquilo que cativas.”
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:justify-center md:justify-start">
+            <a href="#historia" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-sunflower-500 text-space-900 font-semibold shadow-glow hover:bg-sunflower-400 transition">
+              Ver nossa história
+            </a>
+            <a href="#carta" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">
+              Abrir cartinha
+            </a>
+          </div>
+        </div>
+  
+        <div class="relative">
+          <div class="relative mx-auto w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96">
+            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-sunflower-400 to-sunflower-700 shadow-glow animate-float"></div>
+            <!-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[18%] bg-white/15 rounded-full blur-sm"></div> -->
+            <!-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[65%] w-[125%] h-[14%] bg-white/10 rounded-full blur-[2px]"></div> -->
+            <div class="absolute -left-3 top-10 w-8 h-8 rounded-full bg-sunflower-500 border-2 border-sunflower-200 shadow-md"></div>
+            <div class="absolute right-4 -top-2 w-7 h-7 rounded-full bg-sunflower-600 border-2 border-sunflower-200 shadow-md"></div>
+            <div class="absolute -right-2 bottom-8 w-9 h-9 rounded-full bg-sunflower-400 border-2 border-sunflower-200 shadow-md"></div>
+  
+            <!-- dome + rose -->
+            <svg class="absolute left-1/2 bottom-6 -translate-x-1/2 w-40 drop-shadow-lg" viewBox="0 0 200 260" aria-hidden="true">
+              <rect x="40" y="210" width="120" height="26" rx="6" fill="rgba(255,255,255,0.25)"></rect>
+              <path d="M100 20c-40 0-72 32-72 72v112h144V92c0-40-32-72-72-72z" fill="rgba(199,240,255,0.18)" stroke="rgba(255,255,255,0.35)" stroke-width="3"/>
+              <path d="M100 190c0-30 20-45 0-75" stroke="#2ecc71" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M98 150c-18 4-28-12-12-18 10-4 14 8 12 18z" fill="#2ecc71"/>
+              <path d="M104 160c20 6 34-8 18-16-11-5-16 6-18 16z" fill="#2ecc71"/>
+              <circle cx="100" cy="105" r="18" fill="#ff4d6d"/>
+              <path d="M100 87c10 6 16 16 8 24-8 8-22 4-24-8-2-12 6-22 16-16z" fill="#ff6b81"/>
+              <circle cx="150" cy="80" r="4" fill="white" opacity=".6">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div id="stars" class="pointer-events-none absolute inset-0 -z-10 opacity-40"></div>
+  </section>
