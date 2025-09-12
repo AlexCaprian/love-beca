@@ -9,7 +9,7 @@ class LoveLetter extends HTMLElement {
       const flap = this.querySelector('#flap');
       const letter = this.querySelector('#letter');
       const btn = this.querySelector('#envelopeBtn');
-      const copy = this.querySelector('#copiarFrase');
+      // const copy = this.querySelector('#copiarFrase');
 
       // Anima a aba do envelope e mostra/oculta a carta
       btn?.addEventListener('click', () => {
@@ -24,18 +24,18 @@ class LoveLetter extends HTMLElement {
       });
 
       // Copia a frase para a área de transferência
-      copy?.addEventListener('click', async () => {
-        const frase = '“Tu te tornas eternamente responsável por aquilo que cativas.”';
-        try {
-          await navigator.clipboard.writeText(frase);
-          const old = copy.textContent;
-          copy.textContent = 'Copiado!';
-          setTimeout(() => (copy.textContent = old || 'Copiar frase'), 1200);
-        } catch {
-          // fallback simples
-          alert(frase);
-        }
-      });
+      // copy?.addEventListener('click', async () => {
+      //   const frase = '“Tu te tornas eternamente responsável por aquilo que cativas.”';
+      //   try {
+      //     await navigator.clipboard.writeText(frase);
+      //     const old = copy.textContent;
+      //     copy.textContent = 'Copiado!';
+      //     setTimeout(() => (copy.textContent = old || 'Copiar frase'), 1200);
+      //   } catch {
+      //     // fallback simples
+      //     alert(frase);
+      //   }
+      // });
 
     } catch (err) {
       console.error('Erro ao inicializar <love-letter>:', err);

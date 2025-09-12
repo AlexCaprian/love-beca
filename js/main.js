@@ -1,3 +1,4 @@
+import '../components/app-audio.js';
 import '../components/app-header.js';
 import '../components/hero-section.js';
 import '../components/story-timeline.js';

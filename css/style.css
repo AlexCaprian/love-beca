@@ -1,27 +1,128 @@
 /* Extra touch for starry background sparkles */
 .star::after {
-    content: '';
-    position: absolute;
-    inset: -10px;
-    background: radial-gradient(circle, rgba(255,255,255,.2) 0 2px, transparent 3px);
-    opacity: 0;
-    transition: opacity .3s ease;
-    pointer-events: none;
-  }
-  .star:hover::after { opacity: .7; }
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(255, 255, 255, .2) 0 2px, transparent 3px);
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
 
-  /* Smooth scroll */
-  html { scroll-behavior: smooth; }
+.star:hover::after {
+  opacity: .7;
+}
 
-  /* Prevent text selection on decorative elements */
-  .no-select { 
-    -webkit-user-select: none; 
-    user-select: none; 
-  }
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
 
-  /* Simple reduced motion consideration */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-float, .animate-twinkle, .animate-orbit, .animate-shimmer {
-      animation: none !important;
-    }
+/* Prevent text selection on decorative elements */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Simple reduced motion consideration */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-float,
+  .animate-twinkle,
+  .animate-orbit,
+  .animate-shimmer {
+    animation: none !important;
   }
+}
+
+/* camada que cobre o disco inteiro */
+.orbit-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+/* um container por ícone cobrindo 100% do planeta */
+.orbit-item {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--angle));
+  pointer-events: none;
+}
+
+/* o próprio ícone, ancorado acima do centro pelo raio */
+.orbit-item>img {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - var(--radius));
+  /* % do diâmetro do planeta */
+  transform:
+    translate(-50%, -50%)
+    /* mantém “em pé”, mas deixa um tilt opcional */
+    rotate(calc(var(--angle) * -1 + var(--tilt, 0deg))) scale(var(--scale, 1));
+  width: clamp(18px, 8%, 34px);
+  opacity: var(--alpha, 1);
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* girassol do centro */
+.sunflower-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(52px, 28%, 96px);
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Scrollbar amarelada translúcida e arredondada */
+.scrollbar-sunflower {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(245, 197, 24, .45) rgba(245, 197, 24, .15);
+}
+.scrollbar-sunflower::-webkit-scrollbar {
+  height: 10px; /* horizontal */
+}
+.scrollbar-sunflower::-webkit-scrollbar-track {
+  background: rgba(245, 197, 24, .15); /* amarelo translúcido */
+  border-radius: 9999px;
+}
+.scrollbar-sunflower::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(255, 223, 95, .65), rgba(245, 197, 24, .5));
+  border-radius: 9999px;
+  border: 2px solid rgba(245, 197, 24, .15); /* cria “almofada” */
+}
+.scrollbar-sunflower::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, rgba(255, 223, 95, .8), rgba(245, 197, 24, .7));
+}
+
+/* Fade nas bordas da row (suaviza início/fim do scroll) */
+.scroll-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+          mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+}
+
+
+.audio-player input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 14px; height: 14px; border-radius: 9999px;
+  background: rgba(255,255,255,.95); box-shadow: 0 0 0 3px rgba(245, 197, 24, .35);
+  cursor: pointer; border: none;
+}
+.audio-player input[type="range"]::-moz-range-thumb {
+  width: 14px; height: 14px; border-radius: 9999px;
+  background: rgba(255,255,255,.95); box-shadow: 0 0 0 3px rgba(245, 197, 24, .35);
+  cursor: pointer; border: none;
+}
+.audio-player .seek::-webkit-slider-runnable-track,
+.audio-player .vol::-webkit-slider-runnable-track {
+  height: 8px; border-radius: 9999px; background: rgba(255,255,255,.25);
+}
+.audio-player .seek::-moz-range-track,
+.audio-player .vol::-moz-range-track {
+  height: 8px; border-radius: 9999px; background: rgba(255,255,255,.25);
+}
+

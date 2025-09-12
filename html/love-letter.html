@@ -9,13 +9,21 @@
           <div class="mt-6">
             <button id="envelopeBtn" class="w-full text-left group" aria-expanded="false">
               <div class="relative">
-                <div class="bg-gradient-to-br from-space-800 to-space-700 border border-white/15 rounded-2xl p-5 sm:p-6">
-                  <div id="flap" class="absolute left-4 right-4 -top-2 h-10 rounded-t-2xl bg-gradient-to-b from-sunflower-500 to-sunflower-700 shadow-glow origin-top transition-transform duration-500 will-change-transform"></div>
-                  <div class="relative">
-                    <p class="font-script text-2xl text-sunflower-200">Para: Beca</p>
-                    <p class="text-white/70 mt-2">“Tu te tornas eternamente responsável por aquilo que cativas.”</p>
-                    <p class="text-white/60 mt-2">Com amor, sempre.</p>
-                  </div>
+                <!-- flap por cima -->
+                <div id="flap" class="absolute left-0 right-0 -top-0 h-20 rounded-t-2xl 
+                       bg-gradient-to-b from-sunflower-500 to-sunflower-700 
+                       shadow-glow origin-top transition-transform duration-500 
+                       will-change-transform z-20 
+                       flex items-center justify-start pl-6">
+                  <p class="font-script text-2xl text-white">Para: Beca</p>
+                </div>
+
+                <!-- corpo do envelope -->
+                <div class="relative z-10 bg-gradient-to-br from-space-800 to-space-700 
+                            border border-white/15 rounded-2xl p-5 sm:p-6">
+
+                  <p class="text-white/70 mt-2">“Tu te tornas eternamente responsável por aquilo que cativas.”</p>
+                  <p class="text-white/60 mt-2">Com amor, sempre.</p>
                 </div>
               </div>
             </button>
@@ -37,29 +45,74 @@
           </div>
 
           <div class="mt-6 flex gap-3">
-            <a href="#galeria" class="px-5 py-3 rounded-xl bg-sunflower-500 text-space-900 font-semibold shadow-glow hover:bg-sunflower-400 transition">
+            <a href="#galeria"
+              class="px-5 py-3 rounded-xl bg-sunflower-500 text-space-900 font-semibold shadow-glow hover:bg-sunflower-400 transition">
               Ver momentos
             </a>
-            <button id="copiarFrase" class="px-5 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">
+            <!-- <button id="copiarFrase" class="px-5 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">
               Copiar frase
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
-
-      <div class="order-1 md:order-2">
+      <div class="order-1 md:order-2 ">
         <div class="relative mx-auto w-full max-w-md">
           <div class="relative w-full pt-[100%]">
-            <div class="absolute inset-0 rounded-full bg-gradient-to-b from-sunflower-400 to-sunflower-700 shadow-glow"></div>
-            <div class="absolute inset-0 -m-1 pointer-events-none">
-              <div class="absolute left-1/2 top-0 -translate-x-1/2 w-3 h-6 bg-sunflower-500 rounded-full"></div>
-              <div class="absolute left-1/2 bottom-0 -translate-x-1/2 w-3 h-6 bg-sunflower-600 rounded-full"></div>
-              <div class="absolute top-1/2 -translate-y-1/2 left-0 w-6 h-3 bg-sunflower-500 rounded-full"></div>
-              <div class="absolute top-1/2 -translate-y-1/2 right-0 w-6 h-3 bg-sunflower-600 rounded-full"></div>
+            <!-- disco -->
+            <div class="absolute inset-0 rounded-full bg-gradient-to-b from-sunflower-400 to-sunflower-700 shadow-glow">
             </div>
-            <div class="absolute -left-4 -top-3 w-2 h-2 bg-white rounded-full shadow-star animate-twinkle"></div>
-            <div class="absolute -right-5 top-6 w-1.5 h-1.5 bg-white rounded-full shadow-star animate-twinkle [animation-duration:3s]"></div>
-            <div class="absolute left-6 -bottom-5 w-1.5 h-1.5 bg-white rounded-full shadow-star animate-twinkle [animation-duration:2.4s]"></div>
+
+            <!-- camada com as flores -->
+            <div class="orbit-wrap">
+              <!-- central -->
+              <img src="assets/svg/girassol_plantado.svg" alt="Girassol central" class="sunflower-center" />
+
+              <!-- 20 flores “aleatórias” (ângulo/raio/escala/tilt/alpha variados) -->
+              <div class="orbit-item" style="--angle: 12deg;  --radius: 34%; --scale: .95; --tilt: -6deg; --alpha:.95;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item"
+                style="--angle: 38deg;  --radius: 42%; --scale: 1.00; --tilt: 3deg;  --alpha:.95;"><img
+                  src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 67deg;  --radius: 29%; --scale: .85; --tilt: -2deg; --alpha:.9;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 94deg;  --radius: 45%; --scale: 1.05; --tilt: 5deg;  --alpha:1;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 123deg; --radius: 36%; --scale: .9;  --tilt: -4deg; --alpha:.9;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 149deg; --radius: 41%; --scale: 1.1;  --tilt: 2deg;  --alpha:1;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 176deg; --radius: 33%; --scale: .92; --tilt: -5deg; --alpha:.95;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 201deg; --radius: 27%; --scale: .8;  --tilt: 4deg;  --alpha:.85;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 227deg; --radius: 44%; --scale: 1.08; --tilt: -3deg; --alpha:1;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 253deg; --radius: 31%; --scale: .9;  --tilt: 6deg;  --alpha:.9;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 278deg; --radius: 39%; --scale: .96; --tilt: -2deg; --alpha:.95;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 301deg; --radius: 46%; --scale: 1.12; --tilt: 5deg;  --alpha:1;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 325deg; --radius: 28%; --scale: .82; --tilt: -4deg; --alpha:.85;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 347deg; --radius: 35%; --scale: .94; --tilt: 2deg;  --alpha:.95;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 31deg;  --radius: 26%; --scale: .78; --tilt: -3deg; --alpha:.8;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 59deg;  --radius: 43%; --scale: 1.06; --tilt: 4deg;  --alpha:1;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 111deg; --radius: 30%; --scale: .88; --tilt: -2deg; --alpha:.9;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 170deg; --radius: 38%; --scale: .98; --tilt: 3deg;  --alpha:.95;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item" style="--angle: 214deg; --radius: 34%; --scale: .9;  --tilt: -1deg; --alpha:.9;">
+                <img src="assets/svg/girassol_multi.svg" alt=""></div>
+              <div class="orbit-item"
+                style="--angle: 289deg; --radius: 40%; --scale: 1.02; --tilt: -5deg; --alpha:.95;"><img
+                  src="assets/svg/girassol_multi.svg" alt=""></div>
+            </div>
+
+       
           </div>
         </div>
       </div>
