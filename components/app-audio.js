@@ -8,7 +8,7 @@ const AUDIO_TEMPLATE = `
             rounded-2xl shadow-glow px-4 py-3 select-none">
   <div class="flex items-center gap-3">
     <!-- Play / Pause -->
-    <button id="playPause" aria-label="Play/Pause"
+    <button id="playPause" type="button" aria-label="Play/Pause"
             class="shrink-0 w-10 h-10 rounded-full bg-sunflower-500 text-space-900
                    grid place-items-center hover:bg-sunflower-400 transition">
       <svg id="iconPlay" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ const AUDIO_TEMPLATE = `
 
     <!-- Volume -->
     <div class="hidden sm:flex items-center gap-2 w-28">
-      <button id="muteBtn" aria-label="Mute"
+      <button id="muteBtn" type="button" aria-label="Mute"
               class="text-sunflower-200/90 hover:text-white transition">
         <svg id="iconVol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
              class="w-5 h-5" fill="currentColor">
@@ -50,7 +50,7 @@ const AUDIO_TEMPLATE = `
   <!-- Áudio real -->
   <audio id="audio"
          src="assets/audio/pequeno_principe.mp3"
-         preload="auto" playsinline></audio>
+         preload="metadata" playsinline></audio>
 </div>
 `.trim();
 
@@ -80,7 +80,7 @@ class AppAudio extends HTMLElement {
       if (!audio || !playPause || !seek || !current || !duration) return;
 
       const fmt = s => {
-        if (!isFinite(s)) return '0:00';
+        if (!isFinite(s) || s <= 0) return '0:00';
         const m = Math.floor(s / 60), r = Math.floor(s % 60);
         return `${m}:${r.toString().padStart(2,'0')}`;
       };
@@ -92,30 +92,64 @@ class AppAudio extends HTMLElement {
         iconVol?.classList.toggle('hidden', muted);
         iconMute?.classList.toggle('hidden', !muted);
       };
+      const logPlayError = (err) => {
+        console.warn('[audio] play() falhou:', err?.name, err?.message, err);
+      };
 
+      // Atualiza a duração de forma resiliente
       const updateDuration = () => {
-        if (audio.duration) duration.textContent = fmt(audio.duration);
+        const d = audio.duration;
+        if (isFinite(d) && d > 0) {
+          duration.textContent = fmt(d);
+          // opcional: seek.max = Math.floor(d);
+        }
       };
       audio.addEventListener('loadedmetadata', updateDuration);
+      audio.addEventListener('loadeddata',     updateDuration);
+      audio.addEventListener('canplay',        updateDuration);
       audio.addEventListener('durationchange', updateDuration);
+      if (audio.readyState >= 1) updateDuration();
 
+      // Atualiza tempo corrente e barra
       audio.addEventListener('timeupdate', () => {
-        if (audio.duration) {
-          seek.value = (audio.currentTime / audio.duration) * 100;
-          current.textContent = fmt(audio.currentTime);
+        const d = audio.duration;
+        if (isFinite(d) && d > 0) {
+          seek.value = String((audio.currentTime / d) * 100);
+        }
+        current.textContent = fmt(audio.currentTime);
+      });
+
+      // Erros de mídia
+      audio.addEventListener('error', () => {
+        console.warn('Falha ao carregar o áudio:', audio.error);
+      });
+      audio.addEventListener('stalled', () => console.warn('[audio] stalled'));
+      audio.addEventListener('abort',   () => console.warn('[audio] abort'));
+
+      // Seek
+      seek.addEventListener('input', () => {
+        const d = audio.duration;
+        if (!isFinite(d) || d <= 0) return;
+        const percent = Number(seek.value) || 0;
+        audio.currentTime = (percent / 100) * d;
+      });
+
+      // Play/Pause — chama play direto no gesto (sem await)
+      playPause.addEventListener('click', () => {
+        if (audio.paused) {
+          const p = audio.play();
+          if (p && typeof p.catch === 'function') {
+            p.then(() => setIcons(true)).catch(logPlayError);
+          } else {
+            setIcons(true);
+          }
+        } else {
+          audio.pause();
+          setIcons(false);
         }
       });
 
-      seek.addEventListener('input', () => {
-        if (!audio.duration) return;
-        audio.currentTime = (seek.value / 100) * audio.duration;
-      });
-
-      playPause.addEventListener('click', async () => {
-        if (audio.paused) { try { await audio.play(); setIcons(true); } catch {} }
-        else { audio.pause(); setIcons(false); }
-      });
-
+      // Volume / Mute
       if (vol) {
         vol.addEventListener('input', () => {
           audio.volume = parseFloat(vol.value);
@@ -130,32 +164,26 @@ class AppAudio extends HTMLElement {
           setMuteIcon(audio.muted);
         });
       }
+      // Estado inicial dos ícones de volume
+      setMuteIcon(audio.muted || audio.volume === 0);
 
-      const tryAutoplay = async () => {
-        // Não tenta tocar sozinho; espera gesto
-        const start = async () => {
+      // “Autoplay” no primeiro gesto do usuário (clique/tecla)
+      const tryAutoplay = () => {
+        const start = () => {
           const targetVol = vol ? parseFloat(vol.value) : 0.8;
           audio.muted = false;
-          audio.volume = 0;
-      
-          try {
-            await audio.play();
-            // fade-in suave
-            const endVol = targetVol, steps = 12, stepMs = 80;
-            let i = 0;
-            const iv = setInterval(() => {
-              i++; audio.volume = endVol * (i/steps);
-              if (i >= steps) clearInterval(iv);
-            }, stepMs);
-            setIcons(true);
-          } catch {/* se falhar, ignore */}
+          audio.volume = targetVol;
+          const p = audio.play();
+          if (p && typeof p.catch === 'function') p.catch(logPlayError);
+          setIcons(true);
         };
-      
-        window.addEventListener('pointerdown', start, { once: true });
-        window.addEventListener('keydown', start, { once: true });
+        // usar document pega melhor o primeiro gesto
+        document.addEventListener('pointerdown', start, { once: true, passive: true });
+        document.addEventListener('keydown',     start, { once: true });
       };
-      await tryAutoplay();
+      tryAutoplay();
 
+      // Ícones conforme estado
       audio.addEventListener('pause', () => setIcons(false));
       audio.addEventListener('play',  () => setIcons(true));
       audio.addEventListener('ended', () => { setIcons(false); audio.currentTime = 0; });
@@ -167,6 +195,7 @@ class AppAudio extends HTMLElement {
             <p class="text-white/60">Não foi possível carregar o player.</p>
           </div>
         </div>`;
+      console.warn('[app-audio] erro no componente:', e);
     }
   }
 
