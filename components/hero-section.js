@@ -13,10 +13,10 @@ class HeroSection extends HTMLElement {
         );
   
         // 3) Gera estrelas dentro do layer #stars (se não houver)
-        const starsLayer = this.querySelector('#stars');
-        if (starsLayer && starsLayer.children.length === 0) {
-          this._generateStars(starsLayer, 100); // ajuste a quantidade se quiser
-        }
+        // const starsLayer = this.querySelector('#stars');
+        // if (starsLayer && starsLayer.children.length === 0) {
+        //   this._generateStars(starsLayer, 100); // ajuste a quantidade se quiser
+        // }
   
         // 4) Listener do evento global "toggle-stars"
         const sparkle = () => {

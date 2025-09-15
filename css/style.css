@@ -13,6 +13,18 @@
   opacity: .7;
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: .25; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.6); }
+}
+
+/* opcional: respeitar usuários com redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

@@ -6,64 +6,60 @@ class GalleryGrid extends HTMLElement {
       this.innerHTML = await response.text();
 
       const cardsRow = this.querySelector('#cardsRow');
-      const starBtns = [this.querySelector('#starsToggle'), this.querySelector('#starsToggle_m')].filter(Boolean);
-      const starsLayer = this.querySelector('#starsGallery');
-      if (starsLayer && starsLayer.children.length === 0) this._generateStars(starsLayer, 80);
 
-      // ➜ Dados da galeria (title, text, img)
-      // Pode trocar por fetch de JSON se quiser.
       const items = (window.galleryData ?? [
-        { title: "Nosso pôr do sol", text: "Onde os girassóis parecem olhar para nós.", img: "" },
-        { title: "Primeiro passeio", text: "Passinhos que viraram constelações no coração.", img: "" },
-        { title: "Planeta de girassóis", text: "Nosso cantinho favorito no universo.", img: "" },
-        { title: "Sorrisos", text: "O céu abriu quando você sorriu.", img: "" },
-        { title: "Abraços", text: "Um abraço seu vale um universo.", img: "" },
-        { title: "Caminhos", text: "Do seu lado, tudo floresce.", img: "" },
+        { title: "Beca Neném", text: "Muito fofinha", img: "assets/img/27.jpg" },
+        { title: "Beca aluninha", text: "Muito fofinha em seu uniforme.", img: "assets/img/25.jpg" },
+        { title: "Beca Patriota", text: "Provavelmente estava escondida no 8 de Janeiro.", img: "assets/img/28.jpg" },
+        { title: "Primeiro beijo", text: "Nosso primeiro beijo, seu sim para nós.", img: "assets/img/01.jpg" },
+        { title: "Primeiro encontro", text: "Nosso primeiro encontro, um dia divertido e jeito de sensações.", img: "assets/img/02.jpg" },
+        { title: "Primeira comemoração", text: "Nossa primeira comemoração, um momento especial demias, inesquecível.", img: "assets/img/04.jpg" },
+        { title: "Jardim das flores", text: "Nosso cantinho especial, com a flor mais linda no meio da foto.", img: "assets/img/03.jpg" },
+        { title: "Outra família", text: "Uma família que também te acolhe e ajuda, está aqui para fazer se sentir amada.", img: "assets/img/12.jpg" },
+        { title: "Nosso natal", text: "Um de vários que teremos juntos.", img: "assets/img/14.jpg" },
+        { title: "Praia", text: "Um dia iremos aproveitar a praia com a nossa própria família.", img: "assets/img/16.jpg" },
+        { title: "Carlos Acutis", text: "Essa foto envelheceu como vinho.", img: "assets/img/20.jpg" },
+        { title: "Treinando ser pais", text: "Vamos tirar uma foto assim com nosso filho. rs", img: "assets/img/24.jpg" },
+        { title: "Beca dentusa", text: "Uma beca rara, aparece as vezes quando se come sushi", img: "assets/img/13.jpg" },
+        { title: "Beca Feminista", text: "Essa só existe na fantasia.", img: "assets/img/18.jpg" },
+        { title: "Beca Sensual", text: "Tem um sex appeal essa foto que não sei explicar.", img: "assets/img/11.jpg" },
+        { title: "Beca desconfiada", text: "Acho muito bom sua cara nessa foto. rs", img: "assets/img/07.jpg" },
+        { title: "Beca dorminhoca", text: "Acho muito lindo você dormindo. Não vejo a hora de poder acordar todos os dias vendo essa cena.", img: "assets/img/08.jpg" },
+        { title: "Beca Bronzeada", text: "Surge depois da Beca aquática.", img: "assets/img/17.jpg" },
+        { title: "Beca florida", text: "Ainda vou comprar um vestido desses para você.", img: "assets/img/21.jpg" },
+        { title: "Juntos", text: "Vamos construir nossa família.", img: "assets/img/30.jpg" },
+
+
       ]);
 
-      // Renderiza os cards
-      // Renderiza os cards (com fallback de cor quando não houver img ou se falhar)
       if (cardsRow) {
         cardsRow.innerHTML = items.map(({ title, text, img }) => {
           const hasImg = Boolean(img && String(img).trim());
-          // Fallback: fundo colorido/gradiente
           const fallback = `
-      <div class="absolute inset-0 bg-gradient-to-br from-sunflower-500/30 to-space-700/50"></div>
-    `;
-          // Imagem (se houver) + overlay; onerror esconde a <img> e mantém o fallback
+            <div class="absolute inset-0 bg-gradient-to-br from-sunflower-500/30 to-space-700/50"></div>
+          `;
           const picture = hasImg ? `
-      <img src="${img}" alt="${title}" loading="lazy"
-           class="card-img absolute inset-0 w-full h-full object-cover"
-           onerror="this.style.display='none';"
-      />
-    ` : '';
+            <img src="${img}" alt="${title}" loading="lazy"
+                 class="card-img absolute inset-0 w-full h-full object-cover"
+                 onerror="this.style.display='none';"
+            />
+          ` : '';
 
           return `
-      <article class="snap-start shrink-0 w-[260px] sm:w-[300px] bg-white/5 border border-white/10 rounded-2xl overflow-hidden group hover:bg-white/7 transition">
-        <div class="aspect-[4/3] relative">
-          ${fallback}
-          ${picture}
-          <div class="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-semibold text-lg">${title}</h3>
-          <p class="text-white/75 mt-1">${text}</p>
-        </div>
-      </article>
-    `;
+            <article class="snap-start shrink-0 w-[260px] sm:w-[300px] bg-white/5 border border-white/10 rounded-2xl overflow-hidden group hover:bg-white/7 transition">
+              <div class="aspect-[4/3] relative">
+                ${fallback}
+                ${picture}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold text-lg">${title}</h3>
+                <p class="text-white/75 mt-1">${text}</p>
+              </div>
+            </article>
+          `;
         }).join('');
       }
-
-      // Toggle estrelas locais + evento global
-      const toggleLocalAndGlobalStars = () => {
-        if (starsLayer) {
-          starsLayer.style.transition = 'opacity .4s ease';
-          const current = parseFloat(starsLayer.style.opacity || '0');
-          starsLayer.style.opacity = current >= 1 ? '0' : '1';
-        }
-        window.dispatchEvent(new CustomEvent('toggle-stars', { detail: { from: 'gallery' } }));
-      };
-      starBtns.forEach(b => b.addEventListener('click', toggleLocalAndGlobalStars));
 
     } catch (err) {
       console.error('Erro ao inicializar <gallery-grid>:', err);
@@ -74,26 +70,6 @@ class GalleryGrid extends HTMLElement {
           </div>
         </section>`;
     }
-  }
-
-  _generateStars(container, count = 80) {
-    container.style.position = 'absolute';
-    container.style.inset = '0';
-    for (let i = 0; i < count; i++) {
-      const s = document.createElement('span');
-      const size = Math.random() < 0.85 ? 2 : 3;
-      s.style.position = 'absolute';
-      s.style.width = `${size}px`;
-      s.style.height = `${size}px`;
-      s.style.borderRadius = '9999px';
-      s.style.background = 'rgba(255,255,255,0.95)';
-      s.style.boxShadow = '0 0 6px rgba(255,255,255,.4)';
-      s.style.left = `${Math.random() * 100}%`;
-      s.style.top = `${Math.random() * 100}%`;
-      s.style.animation = `twinkle ${1.8 + Math.random() * 1.5}s ease-in-out ${Math.random() * 2}s infinite`;
-      container.appendChild(s);
-    }
-    container.style.opacity = '0';
   }
 }
 customElements.define('gallery-grid', GalleryGrid);

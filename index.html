@@ -20,13 +20,15 @@
 </head>
 
 <body class="bg-space-900 text-white antialiased">
+    <div id="global-stars" class="pointer-events-none fixed inset-0 opacity-0 transition-opacity duration-[400ms]">
+    </div>
 
     <app-header></app-header>
     <hero-section></hero-section>
     <story-timeline></story-timeline>
     <love-letter></love-letter>
     <gallery-grid></gallery-grid>
-    <app-audio></app-audio> 
+    <app-audio></app-audio>
     <app-footer></app-footer>
 
     <script type="module" src="./js/main.js"></script>

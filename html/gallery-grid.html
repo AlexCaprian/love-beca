@@ -1,5 +1,4 @@
 <section id="galeria" class="relative py-16 sm:py-20 md:py-24">
-  <div id="starsGallery" class="pointer-events-none absolute inset-0 -z-10 opacity-0"></div>
 
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-end justify-between gap-4 mb-8">
@@ -8,7 +7,8 @@
         <p class="text-white/80 mt-1">Um céu de lembranças, com planetas e girassóis.</p>
       </div>
       <div class="hidden sm:flex gap-2">
-        <button id="starsToggle" class="px-4 py-2 rounded-xl bg-sunflower-500 text-space-900 font-semibold hover:bg-sunflower-400 transition">
+        <button id="starsToggle"
+          class="px-4 py-2 rounded-xl bg-sunflower-500 text-space-900 font-semibold hover:bg-sunflower-400 transition">
           Acender céu
         </button>
       </div>
@@ -17,16 +17,17 @@
     <!-- Row com scroll + fade nas bordas + scrollbar custom -->
     <div class="relative">
       <div id="cardsRow"
-           class="scrollbar-sunflower scroll-fade flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4">
+        class="scrollbar-sunflower scroll-fade flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4">
         <!-- os cards serão injetados via JS -->
       </div>
     </div>
 
-    <div class="mt-6 sm:hidden flex gap-2">
-      <button id="starsToggle_m" class="flex-1 px-4 py-3 rounded-xl bg-sunflower-500 text-space-900 font-semibold hover:bg-sunflower-400 transition">
+    <!-- <div class="mt-6 sm:hidden flex gap-2">
+      <button id="starsToggle_m"
+        class="flex-1 px-4 py-3 rounded-xl bg-sunflower-500 text-space-900 font-semibold hover:bg-sunflower-400 transition">
         Acender céu
       </button>
-    </div>
+    </div> -->
   </div>
 
   <!-- <app-audio></app-audio> -->
