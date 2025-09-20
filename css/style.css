@@ -1,3 +1,9 @@
+/* evita qualquer scroll horizontal acidental */
+html, body { overflow-x: hidden; }
+
+/* garante sizing previsível em todos */
+*, *::before, *::after { box-sizing: border-box; }
+
 /* Extra touch for starry background sparkles */
 .star::after {
   content: '';

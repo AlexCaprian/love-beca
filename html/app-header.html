@@ -17,9 +17,20 @@
         <a href="#galeria" class="px-3 py-2 rounded-xl hover:bg-white/10 transition">Fotinas</a>
       </div>
       <button id="btnBrilhar"
-        class="ml-3 text-space-900 bg-sunflower-500 hover:bg-sunflower-400 active:bg-sunflower-600 transition font-semibold px-4 py-2 rounded-xl shadow-glow">
-        Brilha Brilha Estrelinha
+        class="ml-3 text-space-900 bg-sunflower-500 hover:bg-sunflower-400 active:bg-sunflower-600 transition font-semibold px-3 sm:px-4 py-2 rounded-xl shadow-glow"
+        aria-label="Brilha Brilha Estrelinha">
+        <!-- Ícone: aparece no mobile (sm:hidden) -->
+        <span class="inline sm:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"
+            aria-hidden="true">
+            <path d="M12 2l2.39 4.85L20 9.27l-4 3.9.94 5.48L12 16.9l-4.94 1.75L8 13.17 4 9.27l5.61-2.42L12 2z" />
+          </svg>
+        </span>
+
+        <!-- Texto: aparece do sm pra cima (hidden sm:inline) -->
+        <span class="hidden sm:inline">Brilha Brilha Estrelinha</span>
       </button>
+
     </nav>
   </div>
 </header>
